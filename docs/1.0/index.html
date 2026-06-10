@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dokyll 1.0 Documentation</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+      }
+
+      body[data-theme="light"] {
+        --bg: #ffffff;
+        --surface: #f7f8fb;
+        --panel: #ffffff;
+        --text: #111827;
+        --muted: #4b5563;
+        --border: #e2e8f0;
+        --accent: #2563eb;
+      }
+
+      body[data-theme="dark"] {
+        --bg: #0c1521;
+        --surface: #111827;
+        --panel: #111827;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: rgba(148, 163, 184, 0.18);
+        --accent: #38bdf8;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      a:hover,
+      a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .brand {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.75rem;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .brand p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .badge {
+        border-radius: 999px;
+        padding: 0.3rem 0.75rem;
+        background: rgba(56, 189, 248, 0.15);
+        color: var(--accent);
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      .header-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .header-actions label {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .header-actions select {
+        border: 1px solid var(--border);
+        background: var(--panel);
+        color: var(--text);
+        padding: 0.55rem 0.75rem;
+        border-radius: 0.75rem;
+        min-width: 150px;
+      }
+
+      .content {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 260px minmax(0, 1fr);
+        margin-top: 1.75rem;
+      }
+
+      .sidebar,
+      .main {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+      }
+
+      .sidebar h2,
+      .main h2 {
+        margin-top: 0;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.5rem;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 0.9rem 1rem;
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+      }
+
+      .sidebar a:hover,
+      .sidebar a:focus-visible {
+        background: rgba(56, 189, 248, 0.14);
+      }
+
+      .sidebar a.active {
+        background: rgba(56, 189, 248, 0.22);
+      }
+
+      .doc-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .doc-meta strong {
+        color: var(--muted);
+      }
+
+      .content-html {
+        min-height: 44vh;
+      }
+
+      .content-html h1,
+      .content-html h2,
+      .content-html h3 {
+        color: var(--text);
+      }
+
+      .content-html p,
+      .content-html li,
+      .content-html blockquote {
+        color: var(--muted);
+      }
+
+      .content-html pre {
+        overflow-x: auto;
+        padding: 1rem;
+        border-radius: 0.85rem;
+        background: rgba(15, 23, 42, 0.75);
+      }
+
+      .content-html code {
+        color: #f8fafc;
+        background: rgba(148, 163, 184, 0.14);
+        padding: 0.15rem 0.3rem;
+        border-radius: 0.35rem;
+      }
+
+      .error {
+        color: #fee2e2;
+        background: rgba(254, 226, 226, 0.18);
+        border: 1px solid #fecaca;
+        padding: 1rem;
+        border-radius: 0.75rem;
+      }
+
+      @media (max-width: 900px) {
+        .content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <div class="page">
+      <header>
+        <div class="brand">
+          <div>
+            <p>Dokyll</p>
+            <h1>Documentazione</h1>
+          </div>
+          <span class="badge" id="versionBadge">v1.0</span>
+        </div>
+        <div class="header-actions">
+          <label>
+            Versione
+            <select id="versionSelector" aria-label="Seleziona versione">
+              <option value="1.0">1.0</option>
+            </select>
+          </label>
+          <label>
+            Tema
+            <select id="themeSelector" aria-label="Seleziona tema">
+              <option value="auto">Auto</option>
+              <option value="light">Bianco</option>
+              <option value="dark">Scuro</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <div class="content">
+        <aside class="sidebar" aria-label="Navigazione documentazione">
+          <h2>Documenti</h2>
+          <ul id="sidebarLinks"></ul>
+        </aside>
+
+        <main class="main">
+          <div class="doc-meta">
+            <strong>Sezione:</strong>
+            <span id="currentSection">Home</span>
+          </div>
+          <article class="content-html" id="content"></article>
+          <div class="error-message" id="errorMessage" hidden></div>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      const themeSelector = document.getElementById('themeSelector');
+      const versionSelector = document.getElementById('versionSelector');
+      const contentEl = document.getElementById('content');
+      const errorEl = document.getElementById('errorMessage');
+      const currentSectionEl = document.getElementById('currentSection');
+      const versionBadge = document.getElementById('versionBadge');
+      const sidebarLinks = document.getElementById('sidebarLinks');
+
+      const docs = [
+        { key: 'home', label: 'Home', file: 'README.md' },
+        { key: 'overview', label: 'A colpo d\'occhio', file: 'orview.md' },
+        { key: 'install', label: 'Installazione', file: 'install.md' },
+        { key: 'blog', label: 'Blog', file: 'blog.md' },
+        { key: 'style', label: 'Stile', file: 'style.md' },
+        { key: 'build', label: 'Build', file: 'build.md' }
+      ];
+
+      const versions = ['1.0'];
+      const currentVersion = '1.0';
+      const defaultTheme = 'auto';
+
+      function getPreferredTheme() {
+        return localStorage.getItem('dokyll-theme') || defaultTheme;
+      }
+
+      function getPreferredVersion() {
+        const saved = localStorage.getItem('dokyll-version');
+        return versions.includes(saved) ? saved : currentVersion;
+      }
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function applyTheme(theme) {
+        const selected = theme || defaultTheme;
+        const actual = selected === 'auto' ? getSystemTheme() : selected;
+        document.body.dataset.theme = actual;
+        themeSelector.value = selected;
+      }
+
+      function applyVersion(version) {
+        const selected = versions.includes(version) ? version : currentVersion;
+        versionBadge.textContent = `v${selected}`;
+        versionSelector.value = selected;
+      }
+
+      function normalizeDocKey(key) {
+        if (!key) return 'home';
+        return key.toString().trim().toLowerCase().replace(/\.md$/, '');
+      }
+
+      function getUrlParams() {
+        return new URLSearchParams(window.location.search);
+      }
+
+      function getCurrentDocKey() {
+        return normalizeDocKey(getUrlParams().get('doc'));
+      }
+
+      function getCurrentVersion() {
+        const version = getUrlParams().get('ver');
+        return versions.includes(version) ? version : getPreferredVersion();
+      }
+
+      function updateUrl(docKey, version) {
+        const params = new URLSearchParams();
+        params.set('doc', docKey);
+        params.set('ver', version);
+        window.history.replaceState(null, '', `${window.location.pathname}?${params}`);
+      }
+
+      function renderSidebar(docKey, version) {
+        sidebarLinks.innerHTML = '';
+        docs.forEach((doc) => {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `?doc=${encodeURIComponent(doc.key)}&ver=${encodeURIComponent(version)}`;
+          link.textContent = doc.label;
+          if (doc.key === docKey) {
+            link.classList.add('active');
+          }
+          li.appendChild(link);
+          sidebarLinks.appendChild(li);
+        });
+      }
+
+      async function loadMarkdown(docKey, version) {
+        const normalizedKey = normalizeDocKey(docKey);
+        const doc = docs.find((item) => item.key === normalizedKey) || docs[0];
+        currentSectionEl.textContent = doc.label;
+        errorEl.hidden = true;
+
+        const path = version === currentVersion ? doc.file : `../${version}/${doc.file}`;
+        try {
+          const response = await fetch(path);
+          if (!response.ok) {
+            throw new Error(`Impossibile caricare la sezione ${doc.label}`);
+          }
+          const markdown = await response.text();
+          contentEl.innerHTML = marked.parse(markdown);
+          updateUrl(doc.key, version);
+          renderSidebar(doc.key, version);
+        } catch (err) {
+          contentEl.innerHTML = '';
+          errorEl.textContent = err.message;
+          errorEl.className = 'error';
+          errorEl.hidden = false;
+        }
+      }
+
+      themeSelector.addEventListener('input', (event) => {
+        const selected = event.target.value;
+        localStorage.setItem('dokyll-theme', selected);
+        applyTheme(selected);
+      });
+
+      versionSelector.addEventListener('input', (event) => {
+        const selected = event.target.value;
+        localStorage.setItem('dokyll-version', selected);
+        const currentDoc = getCurrentDocKey();
+        const nextUrl = `../${selected}/?doc=${encodeURIComponent(currentDoc)}`;
+        window.location.href = nextUrl;
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (themeSelector.value === 'auto') {
+          applyTheme('auto');
+        }
+      });
+
+      const initialVersion = getCurrentVersion();
+      const initialDocKey = getCurrentDocKey();
+      applyTheme(getPreferredTheme());
+      applyVersion(initialVersion);
+      renderSidebar(initialDocKey, initialVersion);
+      loadMarkdown(initialDocKey, initialVersion);
+    </script>
+  </body>
+</html>

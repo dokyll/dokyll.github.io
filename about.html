@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Dokyll</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar">
+        <div class="brand">
+          <a href="/">
+            <img class="logo desktop-logo" src="PCLogo.png" alt="Logo Dokyll desktop" />
+            <img class="logo mobile-logo" src="CELLLogo.png" alt="Logo Dokyll mobile" />
+          </a>
+        </div>
+
+        <button class="hamburger" aria-label="Apri menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="menu desktop-menu">
+          <li><a href="/">Home</a></li>
+          <li class="has-submenu">
+            <button aria-expanded="false">Scarica</button>
+            <ul class="submenu">
+              <li><a href="/download/windows">Windows</a></li>
+              <li><a href="/download/">Tutti i sistemi</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <button aria-expanded="false">Informati</button>
+            <ul class="submenu">
+              <li><a href="/about">About</a></li>
+              <li><a href="/docs/1.0/">Documentazione</a></li>
+            </ul>
+          </li>
+          <li><a href="https://github.com/dokyll">GitHub</a></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-menu-wrapper">
+        <ul class="menu mobile-menu" aria-label="Menu mobile">
+          <li><a href="/">Home</a></li>
+          <li class="has-submenu">
+            <button aria-expanded="false">Scarica</button>
+            <ul class="submenu">
+              <li><a href="/download/windows">Windows</a></li>
+              <li><a href="/download/">Tutti i sistemi</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <button aria-expanded="false">Informati</button>
+            <ul class="submenu">
+              <li><a href="/about">About</a></li>
+              <li><a href="/docs/1.0/">Documentazione</a></li>
+            </ul>
+          </li>
+          <li><a href="https://github.com/dokyll">GitHub</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">About Dokyll </p>
+          <h1>About Dokyll</h1>
+          <p>Dokyll è una CLI che trasforma i tuoi file <code>.html</code>,<code>.md</code> e tutti quelli del tuo sito in build statiche pronte per il web, con un flusso semplice e ripetibile, in formato <code>.dok</code>.</p>
+          <a class="button" href="https://github.com/dokyll/dokyll/releases/download/1.0.0/setupdokyll-x64win-1.0.0.exe">Scarica ora per Windows x64</a>
+          <p>Stai cercando per un altro sistema o architettura? <a style="color:#5cd05c; text-decoration: underline;" href="/download/">Tutti i download</a></p>
+        </div>
+      </section>
+
+      <section id="why" class="feature">
+        <h2>Perchè esiste Dokyll?</h2>
+        <p>Dokyll nasce dalla curiosità: l'autore, avendo tante GitHub Pages, si disse: <em>non voglio solo guardare la build, volgio vedere come si fa</em>.<br/>Così nasce Dokyll.</p>
+      </section>
+      <section id="web" class="feature">
+        <h2>Build in file .dok</h2>
+        <p>Scrivi il contenuto una sola volta, poi usa Dokyll per generare il sito statico in modo rapido e affidabile.</p>
+      </section>
+
+      <section id="design" class="feature">
+        <h2>Automazione intelligente</h2>
+        <p>La CLI gestisce template, asset e struttura, per concentrarti solo sui contenuti e sul risultato finale.</p>
+      </section>
+
+      <section id="hosting" class="feature">
+        <h2>Output statico</h2>
+        <p>Il risultato è un sito statico ottimizzato, facile da pubblicare su qualsiasi hosting e perfetto per performance e sicurezza.</p>
+      </section>
+
+      <section id="portfolio" class="feature">
+        <h2>Esempi di progetti</h2>
+        <p>Usa Dokyll per generare pagine, blog o documentazione partendo dai tuoi file del sito.</p>
+      </section>
+
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
