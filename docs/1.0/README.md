@@ -1,10 +1,10 @@
 # Documentazione Dokyll 1.0.0
 
 **Da zero:** 
-- [A colpo d'occhio](orview.md)
-- [Installazione](install.md)
+- [A colpo d'occhio](?doc=overview)
+- [Installazione](?doc=install)
 
 **Tutorial:**
-- [Scrivi il tuo blog in HTML](blog.md)
-- [Aggiungiamo un pò di stile!](style.md)
-- [Facciamo la build](build.md)
+- [Scrivi il tuo blog in HTML](?doc=blog)
+- [Aggiungiamo un pò di stile!](?doc=style)
+- [Facciamo la build](?doc=build)
