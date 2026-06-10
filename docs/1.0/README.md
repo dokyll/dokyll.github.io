@@ -1,4 +1,4 @@
-# Documentazione Dokyll 1.0.0
+# Documentazione Dokyll 1.0
 
 **Da zero:** 
 - [A colpo d'occhio](?doc=overview)
