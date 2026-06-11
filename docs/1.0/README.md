@@ -7,4 +7,5 @@
 **Tutorial:**
 - [Scrivi il tuo blog in HTML](?doc=blog)
 - [Aggiungiamo un pò di stile!](?doc=style)
+- [Usare i plugins](?doc=plugins)
 - [Facciamo la build](?doc=build)
