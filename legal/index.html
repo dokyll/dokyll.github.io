@@ -230,10 +230,17 @@
         <div class="brand">
           <div>
             <p>Dokyll</p>
-            <h1>Legali</h1>
+            <h1>Legale</h1>
           </div>
+          <span class="badge" id="versionBadge">legal</span>
         </div>
         <div class="header-actions">
+          <label>
+            Versione
+            <select id="versionSelector" aria-label="Seleziona versione">
+              <option value="legal">legal</option>
+            </select>
+          </label>
           <label>
             Tema
             <select id="themeSelector" aria-label="Seleziona tema">
@@ -274,12 +281,12 @@
 
       const docs = [
         { key: 'home', label: 'Home', file: 'README.md' },
-        { key: 'coc', label: 'Codice di Condotta', file: 'code_of_conduct.md' },
-        { key: 'contributing', label: 'Contribuire a Dokyll', file: 'contributing.md'}
+        { key: 'contributing', label: 'Contribuire a Dokyll', file: 'contributing.md' },
+        { key: 'coc', label: 'Codice di contotta', file: 'code_of_conduct.md' }
       ];
 
-      const versions = ['1.0'];
-      const currentVersion = '1.0';
+      const versions = ['legal'];
+      const currentVersion = 'legal';
       const defaultTheme = 'auto';
 
       function getPreferredTheme() {
@@ -289,7 +296,7 @@
       function getPreferredVersion() {
         const saved = localStorage.getItem('dokyll-version');
         return versions.includes(saved) ? saved : currentVersion;
-      }
+    }
 
       function getSystemTheme() {
         return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
